@@ -1,0 +1,26 @@
+{% extends 'timetable/base.html' %}
+
+{% block title %}Підтвердження видалення{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-danger text-white">
+        <h3>Підтвердження видалення</h3>
+    </div>
+    <div class="card-body">
+        <p>Ви впевнені, що хочете видалити цей запис?</p>
+        <p><strong>День:</strong> {{ object.day_of_week }}</p>
+        <p><strong>Час:</strong> {{ object.time_slot }}</p>
+        <p><strong>Предмет:</strong> {{ object.subject }}</p>
+        <p><strong>Викладач:</strong> {{ object.teacher }}</p>
+        <p><strong>Група:</strong> {{ object.group }}</p>
+        <p><strong>Аудиторія:</strong> {{ object.room }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Так, видалити</button>
+            <a href="{% url 'timetable:timetable_list' %}" class="btn btn-secondary">Скасувати</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

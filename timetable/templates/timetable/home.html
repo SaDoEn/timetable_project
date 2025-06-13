@@ -1,0 +1,17 @@
+{% extends 'timetable/base.html' %}
+
+{% block title %}Головна - Система управління розкладом{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Система управління розкладом</h1>
+    <p class="lead">
+        Вітаємо в системі управління розкладом занять для навчального закладу.
+        Ця система дозволяє переглядати та керувати розкладом занять.
+    </p>
+    <hr class="my-4">
+    <p>Оберіть опцію нижче для початку роботи з системою:</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'timetable:timetable_list' %}" role="button">Переглянути розклад</a>
+    <a class="btn btn-secondary btn-lg" href="/admin/" role="button">Адміністрування</a>
+</div>
+{% endblock %}
