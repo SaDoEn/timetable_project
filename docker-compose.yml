@@ -1,8 +1,23 @@
 version: '3.9'
 
 services:
+  db:
+    image: postgres:15
+    container_name: timetable-db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: timetable-app
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
@@ -12,17 +27,6 @@ services:
       - db
     env_file:
       - .env
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    working_dir: /var/lib/postgresql/data
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
 
 volumes:
   postgres_data:
