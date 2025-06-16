@@ -1,9 +1,7 @@
-version: '3.9'
-
 services:
   db:
     image: postgres:15
-    container_name: timetable_db
+    container_name: timetable-db
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
@@ -14,7 +12,7 @@ services:
       - "5432:5432"
 
   web:
-    build:
+    build: 
       context: .
       dockerfile: Dockerfile
     container_name: timetable-app
