@@ -20,7 +20,7 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - localhost
+      - db
     env_file:
       - .env
 
